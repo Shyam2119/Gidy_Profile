@@ -38,13 +38,13 @@ const DEFAULT_PROFILE_ID = "user_001";
 if (!db.prepare("SELECT id FROM profiles WHERE id = ?").get(DEFAULT_PROFILE_ID)) {
     const defaultProfile = {
         id: DEFAULT_PROFILE_ID,
-        name: "Shyam Pattipu",
-        title: "Final-Year Student",
-        bio: "Final year B.Tech CSE student with a focus on AI and full-stack development. I enjoy building practical applications — from ML-powered tools to web apps — and I'm always looking for projects where I can learn something new. Outside coding, I like watching tech videos and reading about what's happening in the AI space.",
-        avatar: "https://i.pravatar.cc/300?img=12",
-        location: "Vijayawada, India",
-        website: "https://github.com/Sasigaya3",
-        email: "shyampattipu@gmail.com",
+        name: "Arjun Sharma",
+        title: "Full Stack Developer",
+        bio: "Hi, I'm Arjun. I recently completed my computer science degree and I enjoy building web applications. I like working with JavaScript and Python and learning new technologies by doing small projects. Currently exploring backend development and improving my problem solving skills.",
+        avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+        location: "Bengaluru, India",
+        website: "https://arjunportfolio.dev",
+        email: "arjun.sharma@gmail.com",
         availableForWork: true,
         resumeUrl: "#",
         league: "Bronze",
@@ -58,28 +58,28 @@ if (!db.prepare("SELECT id FROM profiles WHERE id = ?").get(DEFAULT_PROFILE_ID))
             { id: "t4", label: "Add Experience", emoji: "💼", points: 20, done: true, hint: "Showcase your internships and work." },
         ],
         socials: {
-            github: "https://github.com/Sasigaya3",
-            linkedin: "https://linkedin.com/in/shyam-pattipu",
+            github: "https://github.com/arjunsharma",
+            linkedin: "https://linkedin.com/in/arjunsharma",
             twitter: "",
         },
         experience: [
             {
-                id: "e1", role: "AI Intern", company: "Slashmark IT",
-                location: "Remote", start: "2024-06", end: "2024-09",
-                description: "Worked on machine learning projects including chatbot development and data analysis pipelines. Got hands-on with Python, scikit-learn, and REST API deployment.",
+                id: "e1", role: "Software Developer Intern", company: "TechSoft Solutions",
+                location: "Remote", start: "2024-01", end: "2024-06",
+                description: "Worked on small web applications and helped improve UI components. Fixed bugs and added features to an internal HR tool built with React and Node.js.",
             },
             {
-                id: "e2", role: "GEN AI Intern", company: "Codegnanit Solutions",
-                location: "Remote", start: "2024-01", end: "2024-05",
-                description: "Built a document summarisation tool using LangChain and OpenAI APIs, integrated with a React frontend. Learned a lot about prompt engineering and working with LLMs practically.",
+                id: "e2", role: "Personal Projects", company: "Self-Learning",
+                location: "Remote", start: "2023-01", end: "2023-12",
+                description: "Built a few full stack projects using React and Node.js to practice development. Worked on a task manager app and a simple e-commerce UI as part of self-learning.",
             },
         ],
         education: [
             {
-                id: "ed1", degree: "B.Tech - CSE (AI & ML)",
-                institution: "NRI Institute of Technology", location: "Vijayawada",
-                start: "2022-09", end: null,
-                description: "Studying Computer Science with a specialisation in Artificial Intelligence and Machine Learning. Active in hackathons and college tech projects.",
+                id: "ed1", degree: "B.E - Computer Science",
+                institution: "RV College of Engineering", location: "Bengaluru",
+                start: "2020-08", end: "2024-06",
+                description: "Studied core CS subjects including data structures, databases, and web development. Participated in a few college hackathons.",
             },
         ],
         certification: [],
@@ -93,15 +93,14 @@ if (!db.prepare("SELECT id FROM profiles WHERE id = ?").get(DEFAULT_PROFILE_ID))
         "INSERT INTO skills (id, profile_id, name, level, endorsements) VALUES (?, ?, ?, ?, ?)"
     );
     [
-        { id: "s1", name: "Python", level: 85, endorsements: 8 },
-        { id: "s2", name: "Java", level: 72, endorsements: 5 },
-        { id: "s3", name: "C", level: 68, endorsements: 4 },
-        { id: "s4", name: "Full Stack Development", level: 78, endorsements: 10 },
-        { id: "s5", name: "SQL", level: 74, endorsements: 6 },
-        { id: "s6", name: "Web Development", level: 76, endorsements: 7 },
-        { id: "s7", name: "Machine Learning", level: 65, endorsements: 4 },
-        { id: "s8", name: "React", level: 70, endorsements: 5 },
-        { id: "s9", name: "Flask", level: 62, endorsements: 3 },
+        { id: "s1", name: "Python", level: 80, endorsements: 8 },
+        { id: "s2", name: "JavaScript", level: 78, endorsements: 11 },
+        { id: "s3", name: "React", level: 72, endorsements: 7 },
+        { id: "s4", name: "HTML", level: 85, endorsements: 9 },
+        { id: "s5", name: "CSS", level: 80, endorsements: 6 },
+        { id: "s6", name: "SQL", level: 70, endorsements: 5 },
+        { id: "s7", name: "Node.js", level: 65, endorsements: 6 },
+        { id: "s8", name: "Git", level: 75, endorsements: 4 },
     ].forEach((s) => insertSkill.run(s.id, DEFAULT_PROFILE_ID, s.name, s.level, s.endorsements));
 }
 
