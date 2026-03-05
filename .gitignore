@@ -1,0 +1,7 @@
+# ── Root-level gitignore ─────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
+
+# Note: node_modules are excluded in backend/.gitignore and frontend/.gitignore
