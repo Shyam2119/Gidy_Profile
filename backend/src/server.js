@@ -1,9 +1,10 @@
 /**
  * server.js — Application entry point
  *
- * Responsibilities (only):
+ * Responsibilities:
  *   • Configure Express middleware
- *   • Mount route modules
+ *   • Mount API route modules
+ *   • Serve React frontend static build (production)
  *   • Start the HTTP server
  *
  * Business logic  → src/controllers/profileController.js
@@ -12,6 +13,7 @@
  */
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 // Importing the DB module triggers schema creation + seeding on first run
 require("./models/db");
@@ -26,20 +28,29 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
   origin: [
     process.env.FRONTEND_URL || "http://localhost:3000",
-    "http://localhost:5173",  // Vite dev server
-    "http://localhost:4173",  // Vite preview
+    "http://localhost:5173",
+    "http://localhost:4173",
   ],
 }));
 app.use(express.json());
 
-// ── Routes ─────────────────────────────────────────────────────
-app.use("/api/profile", profileRoutes);          // GET/PUT /api/profile, POST endorse
-app.post("/api/generate-bio", generateBio);           // POST /api/generate-bio
-app.get("/api/health", (_req, res) =>                 // GET  /api/health
+// ── API Routes ─────────────────────────────────────────────────
+app.use("/api/profile", profileRoutes);
+app.post("/api/generate-bio", generateBio);
+app.get("/api/health", (_req, res) =>
   res.json({ status: "ok", ts: new Date().toISOString() })
 );
 
+// ── Serve React Frontend (production build) ────────────────────
+const FRONTEND_DIST = path.join(__dirname, "../../frontend/dist");
+app.use(express.static(FRONTEND_DIST));
+
+// All non-API routes → index.html (React client-side routing)
+app.get("*", (_req, res) => {
+  res.sendFile(path.join(FRONTEND_DIST, "index.html"));
+});
+
 // ── Start ──────────────────────────────────────────────────────
 app.listen(PORT, () =>
-  console.log(`🚀 Gidy Profile API running on http://localhost:${PORT}`)
+  console.log(`🚀 Gidy Profile running on http://localhost:${PORT}`)
 );

@@ -1,5 +1,7 @@
 // profileApi.js — HTTP client for the Express backend
-const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+// In production: Express serves frontend, so /api is relative (same origin).
+// In dev: Vite proxies /api → http://localhost:5000 (see vite.config.js).
+const BASE_URL = import.meta.env.VITE_API_URL || "";
 
 /**
  * GET /api/profile
