@@ -3,12 +3,12 @@
     "version": "1.0.0",
     "description": "Full-stack Gidy Profile replica — single-service deployment",
     "scripts": {
-        "build": "cd frontend && npm install && npm run build",
-        "start": "cd backend && npm install --omit=dev && node src/server.js",
+        "build": "cd frontend && npm install && npm run build && cd ../backend && npm install && npm rebuild better-sqlite3",
+        "start": "node backend/src/server.js",
         "dev:backend": "cd backend && npm run dev",
         "dev:frontend": "cd frontend && npm run dev"
     },
     "engines": {
-        "node": ">=18.0.0"
+        "node": "18.x"
     }
 }
